@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zwigato | India's Best Food Delivery App</title>
+    <meta name="description" content="Order food online from the best restaurants. Biryani, Pizza, Burger, Chinese & more. Fast delivery via Zwigato.">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1046/1046771.png">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <i class="fas fa-hamburger"></i> Zwigato<span>.</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#reviews" class="nav-link">Reviews</a></li>
+                <li><a href="#support" class="nav-link">Support</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="icon-btn" onclick="toggleSearch()" title="Search Food">
+                    <i class="fas fa-search"></i>
+                </button>
+                
+                <button class="icon-btn" onclick="toggleCart()" title="View Cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                
+                <button class="btn btn-primary" onclick="openLogin()">
+                    <i class="fas fa-user"></i> Login
+                </button>
+
+                <button class="icon-btn d-none" id="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hungry? <br> <span>Just Zwigato it.</span></h1>
+            <p>From Hyderabadi Biryani to Italian Pizza, we deliver emotions, not just food. 
+               <br>Lightning fast delivery at your doorstep.</p>
+            
+            <div class="hero-search">
+                <i class="fas fa-map-marker-alt" style="color:var(--primary);"></i>
+                <input type="text" placeholder="Enter your delivery location (e.g., Patna, Delhi)..." id="location-input">
+                <button class="btn btn-primary">Find Food</button>
+            </div>
+            
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <div class="tag" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color:white; border:1px solid rgba(255,255,255,0.3);"> 
+                    <i class="fas fa-check-circle" style="color:#2ed573;"></i> No Minimum Order
+                </div>
+                <div class="tag" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color:white; border:1px solid rgba(255,255,255,0.3);"> 
+                    <i class="fas fa-bolt" style="color:#f1c40f;"></i> Live Tracking
+                </div>
+                <div class="tag" style="background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); color:white; border:1px solid rgba(255,255,255,0.3);"> 
+                    <i class="fas fa-headset" style="color:#1e90ff;"></i> 24/7 Support
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="how-it-works" style="padding: 60px 20px; text-align: center;">
+        <div class="section-header" style="justify-content: center; flex-direction: column; text-align: center;">
+            <div class="section-title">
+                <h2 style="font-size: 2.5rem; color: var(--secondary);">How Zwigato Works</h2>
+                <p style="color: var(--text-gray);">Get your favorite food in 3 simple steps</p>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 40px;">
+            <div style="padding: 20px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/857/857681.png" alt="Choose" style="width: 100px; margin: 0 auto 20px;">
+                <h3 style="margin-bottom: 10px;">1. Choose Your Food</h3>
+                <p style="color: #666;">Browse through thousands of restaurant menus and select your favorite dishes.</p>
+            </div>
+            <div style="padding: 20px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png" alt="Pay" style="width: 100px; margin: 0 auto 20px;">
+                <h3 style="margin-bottom: 10px;">2. Pay Online / COD</h3>
+                <p style="color: #666;">Confirm your order with secure payment options or choose Cash on Delivery.</p>
+            </div>
+            <div style="padding: 20px;">
+                <img src="https://cdn-icons-png.flaticon.com/512/2830/2830305.png" alt="Delivery" style="width: 100px; margin: 0 auto 20px;">
+                <h3 style="margin-bottom: 10px;">3. Fast Delivery</h3>
+                <p style="color: #666;">Relax while our "Zwigato Super-Hero" brings the food to your doorstep.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container filters-container" id="menu">
+        <div class="section-header">
+            <div class="section-title">
+                <h2>Our Best Sellers</h2>
+                <p>Taste the best food in your town</p>
+            </div>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterMenu('all')"><i class="fas fa-utensils"></i> All</button>
+            <button class="filter-btn" onclick="filterMenu('biryani')"><i class="fas fa-bowl-rice"></i> Biryani</button>
+            <button class="filter-btn" onclick="filterMenu('pizza')"><i class="fas fa-pizza-slice"></i> Pizza</button>
+            <button class="filter-btn" onclick="filterMenu('burger')"><i class="fas fa-hamburger"></i> Burger</button>
+            <button class="filter-btn" onclick="filterMenu('chinese')"><i class="fas fa-box-open"></i> Chinese</button>
+            <button class="filter-btn" onclick="filterMenu('dessert')"><i class="fas fa-ice-cream"></i> Desserts</button>
+            <button class="filter-btn" onclick="filterMenu('drinks')"><i class="fas fa-cocktail"></i> Drinks</button>
+            <button class="filter-btn" onclick="filterMenu('thali')"><i class="fas fa-plate-wheat"></i> Thali</button>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="menu-grid" id="food-grid">
+            
+            <div class="food-card" data-category="biryani">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500&q=80" alt="Biryani" class="card-img skeleton">
+                    <span class="promo-badge">Bestseller</span>
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Royal Hyderabadi Biryani</h3>
+                        <span class="rating-badge">4.8 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Authentic spices, basmati rice, and tender chicken.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>349</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Hyderabadi Biryani', 349, 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="biryani">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=80" alt="Mutton Biryani" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Lucknowi Mutton Biryani</h3>
+                        <span class="rating-badge">4.9 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Slow cooked mutton with aromatic rice (Dum style).</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>450</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Mutton Biryani', 450, 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="pizza">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&q=80" alt="Pizza" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Classic Pepperoni Pizza</h3>
+                        <span class="rating-badge">4.5 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Loaded with mozzarella and spicy pepperoni slices.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>499</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Pepperoni Pizza', 499, 'https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="pizza">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80" alt="Veg Pizza" class="card-img skeleton">
+                    <span class="promo-badge" style="background: green;">VEG</span>
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Farmhouse Special Pizza</h3>
+                        <span class="rating-badge">4.3 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Onions, capsicum, mushroom, and fresh tomato.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>399</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Farmhouse Pizza', 399, 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="burger">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Burger" class="card-img skeleton">
+                    <span class="promo-badge" style="background:var(--accent);">50% OFF</span>
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Monster Cheese Burger</h3>
+                        <span class="rating-badge">4.2 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Double patty, double cheese, fresh lettuce.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>199</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Monster Burger', 199, 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="burger">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&q=80" alt="Crispy Burger" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Crispy Chicken Burger</h3>
+                        <span class="rating-badge">4.4 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Fried crispy chicken patty with mayo.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>220</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Chicken Burger', 220, 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="chinese">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&q=80" alt="Noodles" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Spicy Schezwan Noodles</h3>
+                        <span class="rating-badge">4.1 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Wok-tossed noodles with fiery schezwan sauce.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>180</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Schezwan Noodles', 180, 'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="chinese">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1626804475297-411d863b5285?w=500&q=80" alt="Momos" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Steamed Chicken Momos</h3>
+                        <span class="rating-badge">4.6 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Delicate dumplings served with spicy red chutney.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>150</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Chicken Momos', 150, 'https://images.unsplash.com/photo-1626804475297-411d863b5285?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="dessert">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476d?w=500&q=80" alt="Brownie" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Fudgy Walnut Brownie</h3>
+                        <span class="rating-badge">4.9 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Warm chocolate brownie topped with ice cream.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>120</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Walnut Brownie', 120, 'https://images.unsplash.com/photo-1606313564200-e75d5e30476d?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="dessert">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcf8?w=500&q=80" alt="Gulab Jamun" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Hot Gulab Jamun (2pcs)</h3>
+                        <span class="rating-badge">4.8 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Traditional Indian sweet in sugar syrup.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>80</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Gulab Jamun', 80, 'https://images.unsplash.com/photo-1576618148400-f54bed99fcf8?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="food-card" data-category="thali">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1626074353765-517a681e40be?w=500&q=80" alt="Thali" class="card-img skeleton">
+                    <span class="promo-badge">Value Meal</span>
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Deluxe Veg Thali</h3>
+                        <span class="rating-badge">4.5 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Paneer, Dal, 2 Rotis, Rice, Salad and Sweet.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>250</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Veg Thali', 250, 'https://images.unsplash.com/photo-1626074353765-517a681e40be?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="thali">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?w=500&q=80" alt="Thali" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Chicken Special Thali</h3>
+                        <span class="rating-badge">4.7 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Butter Chicken, Dal Makhani, Naan and Jeera Rice.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>350</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Chicken Thali', 350, 'https://images.unsplash.com/photo-1606471191009-63994c53433b?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" data-category="drinks">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=500&q=80" alt="Coke" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Chilled Coke (300ml)</h3>
+                        <span class="rating-badge">4.0 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Refreshing soft drink.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>40</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Coke', 40, 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="food-card" data-category="drinks">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&q=80" alt="Shake" class="card-img skeleton">
+                    <button class="fav-btn" onclick="toggleFav(this)"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="food-title">Oreo Milkshake</h3>
+                        <span class="rating-badge">4.8 <i class="fas fa-star"></i></span>
+                    </div>
+                    <p class="food-desc">Thick chocolate milkshake with crushed Oreos.</p>
+                    <div class="card-footer">
+                        <div class="price"><small>₹</small>150</div>
+                        <button class="btn btn-primary add-btn" onclick="addToCart('Oreo Shake', 150, 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&q=80')">ADD +</button>
+                    </div>
+                </div>
+            </div>
+
+        </div> </main>
+
+    <section class="container" id="reviews" style="margin-top: 80px; padding-bottom: 50px;">
+        <h2 style="text-align: center; margin-bottom: 40px; font-size: 2rem;">What Our Customers Say</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="color: #ffb142; margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p style="font-style: italic; color: #555; margin-bottom: 20px;">"The Biryani was absolutely hot and delicious. Delivery was super fast, arrived in 20 mins. Highly recommended!"</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" style="width: 50px; border-radius: 50%;" alt="User">
+                    <div>
+                        <h4 style="margin: 0;">Rahul Sharma</h4>
+                        <small style="color: #999;">Foodie in Delhi</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="color: #ffb142; margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p style="font-style: italic; color: #555; margin-bottom: 20px;">"Best app for late night cravings. The Burger was juicy and the packaging was spill-proof. Love Zwigato!"</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" style="width: 50px; border-radius: 50%;" alt="User">
+                    <div>
+                        <h4 style="margin: 0;">Priya Singh</h4>
+                        <small style="color: #999;">Student in Patna</small>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="color: #ffb142; margin-bottom: 15px;">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p style="font-style: italic; color: #555; margin-bottom: 20px;">"Great discounts and amazing variety. I order almost every weekend. Customer support is also very helpful."</p>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="https://randomuser.me/api/portraits/men/85.jpg" style="width: 50px; border-radius: 50%;" alt="User">
+                    <div>
+                        <h4 style="margin: 0;">Amit Verma</h4>
+                        <small style="color: #999;">Office Worker</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="background: #f8f9fa; padding: 50px; border-radius: 20px; margin-top: 50px;">
+        <h2 style="text-align: center; margin-bottom: 30px;">Frequently Asked Questions</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            
+            <details style="background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer;">
+                <summary style="font-weight: 600; font-size: 1.1rem; outline: none;">How long does delivery take?</summary>
+                <p style="margin-top: 10px; color: #666;">Usually, we deliver within 30-45 minutes depending on your location and restaurant preparation time.</p>
+            </details>
+
+            <details style="background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer;">
+                <summary style="font-weight: 600; font-size: 1.1rem; outline: none;">Is there a minimum order value?</summary>
+                <p style="margin-top: 10px; color: #666;">No! You can order as little or as much as you want. Small order fee may apply for orders under ₹100.</p>
+            </details>
+
+            <details style="background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer;">
+                <summary style="font-weight: 600; font-size: 1.1rem; outline: none;">What payment methods do you accept?</summary>
+                <p style="margin-top: 10px; color: #666;">We accept UPI (GooglePay, PhonePe), Credit/Debit Cards, Net Banking, and Cash on Delivery.</p>
+            </details>
+
+            <details style="background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; cursor: pointer;">
+                <summary style="font-weight: 600; font-size: 1.1rem; outline: none;">How can I track my order?</summary>
+                <p style="margin-top: 10px; color: #666;">Once you place an order, go to the 'Profile' section or use the live tracking link sent to your phone.</p>
+            </details>
+
+        </div>
+    </section>
+
+    <section class="container" style="margin-top: 60px;">
+        <div style="background: var(--secondary); border-radius: 20px; padding: 40px; color: white; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Get the Zwigato App</h2>
+                <p style="margin-bottom: 30px; font-size: 1.1rem; color: #ced6e0;">Get live order tracking, exclusive deals, and lightning-fast delivery on our mobile app.</p>
+                <div style="display: flex; gap: 15px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" style="height: 50px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" style="height: 50px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                </div>
+            </div>
+            <div style="flex: 1; text-align: center; min-width: 250px;">
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&q=80" style="border-radius: 20px; max-width: 300px; margin: 0 auto; transform: rotate(-5deg); border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3);" alt="App Mockup">
+            </div>
+        </div>
+    </section>
+
+    <section class="container" id="support" style="margin-top: 60px;">
+        <div class="payment-section">
+            <div class="dev-info">
+                <h3>Support the Developer ❤️</h3>
+                <p>Zwigato is built with love and code. Contact us for premium projects or donate.</p>
+            </div>
+            
+            <div class="flex-center" style="flex-wrap: wrap; gap: 30px;">
+                <div class="contact-card">
+                    <div class="contact-row">
+                        <i class="fas fa-envelope"></i>
+                        <span>himanshuaio69@gmail.com</span>
+                    </div>
+                    <button class="btn btn-primary" style="margin-top: 15px; width: 100%; justify-content: center;" onclick="window.location.href='mailto:himanshuaio69@gmail.com'">
+                        Email Us
+                    </button>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-row">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span class="upi-id" id="upi-text">9570557907@slc</span>
+                    </div>
+                    <button class="btn btn-upi" style="margin-top: 15px; width: 100%; justify-content: center;" onclick="copyUPI()">
+                        <i class="fas fa-copy"></i> Tap to Copy UPI
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="margin-bottom: 20px; display: block; color:white;">
+                        <i class="fas fa-hamburger"></i> Zwigato<span>.</span>
+                    </a>
+                    <p style="color: #a4b0be;">The best food delivery service in town. Fresh food, fast delivery, and happy customers. We serve happiness.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Zwigato Blog</a></li>
+                        <li><a href="#">Bug Bounty</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Partner with us</a></li>
+                        <li><a href="#">Ride with us</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Cities We Serve</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Delhi NCR</a></li>
+                        <li><a href="#">Patna</a></li>
+                        <li><a href="#">Bangalore</a></li>
+                        <li><a href="#">Mumbai</a></li>
+                        <li><a href="#">Hyderabad</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Zwigato Technologies Pvt. Ltd. All rights reserved.</p>
+                <p style="margin-top: 5px; font-size: 0.8rem; opacity: 0.6;">Designed & Developed by Himanshu</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <div class="cart-title">
+                <i class="fas fa-shopping-bag" style="color: var(--primary);"></i> Your Cart
+            </div>
+            <div class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></div>
+        </div>
+        
+        <div class="cart-body" id="cart-items-container">
+            <div class="empty-cart" id="empty-cart-msg">
+                <i class="fas fa-shopping-basket" style="font-size: 4rem; color: #ddd; margin-bottom: 20px;"></i>
+                <p>Your cart is empty!</p>
+                <button class="btn btn-primary" onclick="toggleCart()" style="margin-top: 20px;">Browse Menu</button>
+            </div>
+            </div>
+
+        <div class="cart-footer">
+            <div class="bill-row">
+                <span>Subtotal</span>
+                <span id="subtotal-price">₹0</span>
+            </div>
+            <div class="bill-row">
+                <span>GST (5%)</span>
+                <span id="gst-price">₹0</span>
+            </div>
+            <div class="bill-row">
+                <span>Delivery Fee</span>
+                <span style="color: var(--success);">FREE</span>
+            </div>
+            <div class="bill-row total">
+                <span>To Pay</span>
+                <span id="total-price">₹0</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" onclick="checkout()">
+                Proceed to Pay <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <div id="login-modal" style="position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:5000; display:none; justify-content:center; align-items:center; backdrop-filter: blur(5px);">
+        <div style="background:white; padding:40px; border-radius:20px; width:90%; max-width:400px; position:relative; box-shadow: 0 20px 50px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease;">
+            <button onclick="closeLogin()" style="position:absolute; top:20px; right:20px; font-size:1.2rem; cursor:pointer; background:none; border:none;"><i class="fas fa-times"></i></button>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h2 style="color:var(--primary); font-size: 2rem;">Zwigato</h2>
+                <p style="color: #666;">Login to continue</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; display: block;">Phone Number</label>
+                <div style="display: flex; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                    <span style="background: #f1f1f1; padding: 12px; color: #555;">+91</span>
+                    <input type="tel" placeholder="Enter mobile number" style="width:100%; padding:12px; border:none; outline:none;">
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" style="width:100%; justify-content: center;" onclick="alert('OTP Sent to your mobile!')">Send OTP</button>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="font-size: 0.8rem; color: #aaa;">Or login with</p>
+                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 10px;">
+                    <button style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white;"><i class="fab fa-google" style="color: #DB4437;"></i></button>
+                    <button style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid #ddd; background: white;"><i class="fab fa-facebook-f" style="color: #4267B2;"></i></button>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top:20px; font-size:0.8rem; color: #999;">By continuing, you agree to our Terms of Service.</p>
+        </div>
+    </div>
+
+    <script>
+        // State Management
+        let cart = [];
+        
+        // --- UI TOGGLES ---
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+            document.getElementById('cart-overlay').classList.toggle('open');
+        }
+
+        function toggleMobileMenu() {
+            const nav = document.getElementById('navLinks');
+            nav.classList.toggle('active'); // Requires CSS update to work fully, but safe here
+            if(nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.left = '0';
+                nav.style.width = '100%';
+                nav.style.background = 'white';
+                nav.style.padding = '20px';
+                nav.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+            }
+        }
+        
+        function openLogin() {
+            document.getElementById('login-modal').style.display = 'flex';
+        }
+        
+        function closeLogin() {
+            document.getElementById('login-modal').style.display = 'none';
+        }
+
+        // --- CART FUNCTIONALITY ---
+        function addToCart(title, price, img) {
+            // Check if item exists
+            const existingItem = cart.find(item => item.title === title);
+            
+            if (existingItem) {
+                existingItem.qty++;
+            } else {
+                cart.push({ title, price, img, qty: 1 });
+            }
+            
+            updateCartUI();
+            showToast(`Added ${title} to cart!`, 'success');
+            
+            // Animation effect on button
+            const badge = document.getElementById('cart-count');
+            badge.style.transform = "scale(1.5)";
+            setTimeout(() => badge.style.transform = "scale(1)", 200);
+        }
+
+        function removeFromCart(title) {
+            cart = cart.filter(item => item.title !== title);
+            updateCartUI();
+        }
+
+        function changeQty(title, change) {
+            const item = cart.find(item => item.title === title);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) removeFromCart(title);
+                else updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-container');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const totalEl = document.getElementById('total-price');
+            const subtotalEl = document.getElementById('subtotal-price');
+            const gstEl = document.getElementById('gst-price');
+            const countEl = document.getElementById('cart-count');
+
+            // Calculate Totals
+            let total = 0;
+            let count = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '';
+                container.appendChild(emptyMsg);
+                emptyMsg.style.display = 'block';
+            } else {
+                emptyMsg.style.display = 'none';
+                container.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="cart-item-img" alt="${item.title}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-bottom">
+                                <div class="qty-controls">
+                                    <button class="qty-btn" onclick="changeQty('${item.title}', -1)">-</button>
+                                    <span>${item.qty}</span>
+                                    <button class="qty-btn" onclick="changeQty('${item.title}', 1)">+</button>
+                                </div>
+                                <div class="cart-item-price">₹${item.price * item.qty}</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+            });
+
+            // Bill Calculation
+            let gst = Math.round(total * 0.05); // 5% GST
+            let finalTotal = total + gst;
+
+            subtotalEl.innerText = '₹' + total;
+            gstEl.innerText = '₹' + gst;
+            totalEl.innerText = '₹' + finalTotal;
+            countEl.innerText = count;
+        }
+
+        // --- FILTER FUNCTIONALITY ---
+        function filterMenu(category) {
+            const cards = document.querySelectorAll('.food-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // Update Active Button
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.style.display = 'flex';
+                    // Animation reset
+                    card.style.animation = 'none';
+                    card.offsetHeight; /* trigger reflow */
+                    card.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // --- UTILITIES ---
+        function toggleFav(btn) {
+            btn.classList.toggle('active');
+            if(btn.classList.contains('active')) {
+                btn.innerHTML = '<i class="fas fa-heart"></i>'; // Solid heart
+                showToast('Added to Favorites', 'success');
+            } else {
+                btn.innerHTML = '<i class="far fa-heart"></i>'; // Outline heart
+            }
+        }
+
+        function copyUPI() {
+            const upiText = document.getElementById('upi-text').innerText;
+            navigator.clipboard.writeText(upiText).then(() => {
+                showToast('UPI ID Copied to Clipboard!', 'success');
+            });
+        }
+
+        function toggleSearch() {
+            const input = document.getElementById('location-input');
+            input.focus();
+            input.parentElement.style.transform = "scale(1.1)";
+            setTimeout(() => input.parentElement.style.transform = "scale(1)", 300);
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                showToast('Your cart is empty!', 'error');
+                return;
+            }
+            alert('Opening Payment Gateway...\nPaying to UPI: 9570557907@slc');
+        }
+
+        function showToast(message, type = 'default') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i> ${message}`;
+            
+            container.appendChild(toast);
+            
+            // Trigger animation
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // --- INIT ---
+        window.addEventListener('load', () => {
+            // Remove skeleton class after load (Simulating data fetch)
+            setTimeout(() => {
+                document.querySelectorAll('.skeleton').forEach(el => {
+                    el.classList.remove('skeleton');
+                });
+            }, 800);
+        });
+
+    </script>
+</body>
+</html>
